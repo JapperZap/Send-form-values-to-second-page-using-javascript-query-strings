@@ -1,36 +1,86 @@
-<form action="./page2.html" id="sample-form">
-<label for="fullname">Full Name</label>
-<input type="text" name="fullname">
-<br><br>
-<label for="age">Age</label>
-<input type="text" name="age">
-<br><br>
-<label for="gender">Gender</label>
-<select name="gender" id="gender">
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
-<br><br>
-<label for="email">Email</label>
-<input type="email" name="email" id="email">
-<br><br>
-<label for="mytoys">My Toys</label>
-<br>
-<input type="checkbox" id="mytoys" name="mytoys" value="Bike">
-<label for="bike"> I have a bike</label><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    
+    <form action="./page2.html" id="sample-form">
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname">
+        <br><br>
+        <label for="age">Age</label>
+        <input type="text" name="age">
+        <br><br>
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        </select>
+        <br><br>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <br><br>
+        <label for="mytoys">My Toys</label>
+        <br>
+        <input type="checkbox" id="mytoys" name="mytoys" value="Bike">
+        <label for="bike"> I have a bike</label><br>
+        
+        <input type="checkbox" id="mytoys" name="mytoys" value="Car">
+        <label for="car"> I have a car</label><br>
+        
+        <input type="checkbox" id="mytoys" name="mytoys" value="Boat">
+        <label for="boat"> I have a boat</label><br><br>
+        
+        <input type="submit">
+        </form>
+        
+        <div>
+        <p id="showFullname"></p>
+        <p id="showAge"></p>
+        <p id="showGender"></p>
+        <p id="showEmail"></p>
+        <p id="favToy"></p>
+</div>
 
-<input type="checkbox" id="mytoys" name="mytoys" value="Car">
-<label for="car"> I have a car</label><br>
+<script>
+    const form = document.getElementById("sample-form");
+form.addEventListener("submit", (evt) => {
+evt.preventDefault();
+const formData = new FormData(form);
+const params = new URLSearchParams(formData);
+// Convert to raw query string
+console.log(params.toString());
+// Loop over each key-value pairs using array destructuring
+for (const [key, value] of params) {
+console.log(`${key} => ${value}`);
 
-<input type="checkbox" id="mytoys" name="mytoys" value="Boat">
-<label for="boat"> I have a boat</label><br><br>
+// Output result of inputs
+const fullname = params.get("fullname");
+const age = params.get("age");
+const gender = params.get("gender");
+const email = params.get("email");
+const mytoys = params.get("mytoys");
+// console.log(`Your fullname is: ${fullname}`);
+// console.log(`Your age is: ${age}`);
+// console.log(`Your email is: ${email}`);
+// console.log(`Your gender is: ${gender}`);
+// console.log(`Your toys are: ${mytoys}`);
 
-<input type="submit">
-</form>
+// Display values on screen
+document.getElementById("showFullname").innerHTML = `Your full name is: ${fullname}`;
+document.getElementById("showAge").innerHTML = `Your age is: ${age}`;
+document.getElementById("showGender").innerHTML = `Your gender is: ${gender}`;
+document.getElementById("showEmail").innerHTML = `Your email is: ${email}`;
+document.getElementById("favToy").innerHTML = `Your favorite toy is: ${mytoys}`;
+}
+});
 
-<p id="showFullname"></p>
-<p id="showAge"></p>
-<p id="showGender"></p>
-<p id="showEmail"></p>
-<p id="favToy"></p>
+</script>
+
+</body>
+</html>
